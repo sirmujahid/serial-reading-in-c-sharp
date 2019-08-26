@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+
+namespace SerialReadInC
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            serialPort1.PortName = "COM4";
+            serialPort1.Open();
+            char[] result = new char[8];
+            serialPort1.Read(result, 0, 8);
+            string s = new string(result);
+            textBox1.Text = s.ToString();
+            serialPort1.Close();
+        }
+    }
+}
